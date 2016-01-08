@@ -1,7 +1,10 @@
+'use strict';
 const webpack = require('webpack');
 const path = require('path');
 
-module.exports = {
+const isProduction = process.env.NODE_ENV === 'production';
+
+let config = {
   entry: {
     index: './lib/index.js'
   },
@@ -24,3 +27,12 @@ module.exports = {
     ]
   }
 };
+
+if (isProduction) {
+  config.output.filename = 'redux-combine.min.js';
+  config.plugins = [
+    new webpack.optimize.UglifyJsPlugin()
+  ];
+}
+
+module.exports = config;

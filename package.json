@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack",
+    "build:min": "NODE_ENV=production webpack",
     "test": "mocha --use_strict --harmony --harmony_destructuring --harmony_default_parameters",
     "check": "eslint lib test"
   },
