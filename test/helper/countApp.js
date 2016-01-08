@@ -5,9 +5,9 @@ module.exports = {
   },
   fromActionToReducer: {
     add: function *() {
-      yield () => ({
-        type: 'countApp-add'
-      });
+      yield type => {
+        return () => ({type});
+      };
       yield (state, action) => {
         return Object.assign({}, state, {
           count: state.count + 1

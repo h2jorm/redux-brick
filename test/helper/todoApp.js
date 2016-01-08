@@ -5,10 +5,11 @@ module.exports = {
   },
   fromActionToReducer: {
     add: function *() {
-      yield todo => ({
-        todo,
-        type: 'todoApp-add'
-      });
+      yield type => {
+        return todo => ({
+          todo, type
+        });
+      };
       yield (state, action) => {
         return Object.assign({}, state, {
           todos: [
