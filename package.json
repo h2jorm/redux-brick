@@ -1,6 +1,6 @@
 {
-  "name": "redux-hub",
-  "version": "0.1.0-rc3",
+  "name": "redux-lego",
+  "version": "0.1.0-rc1",
   "description": "a collection of helper functions for redux operation",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leeching/redux-hub.git"
+    "url": "git+https://github.com/leeching/redux-lego.git"
   },
   "keywords": [
     "redux"
@@ -18,9 +18,9 @@
   "author": "Ching Lee <417300981@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leeching/redux-hub/issues"
+    "url": "https://github.com/leeching/redux-lego/issues"
   },
-  "homepage": "https://github.com/leeching/redux-hub#readme",
+  "homepage": "https://github.com/leeching/redux-lego#readme",
   "dependencies": {
     "lodash": "^3.10.1"
   },
