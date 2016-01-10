@@ -1,6 +1,6 @@
 {
   "name": "redux-hub",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "a collection of helper functions for redux",
   "main": "lib/index.js",
   "scripts": {
