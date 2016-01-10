@@ -1,5 +1,5 @@
 const assert = require('assert');
-const {register} = require('../lib');
+const {register} = require('../src');
 const {
   createStore,
   combineReducers,
