@@ -1,7 +1,7 @@
 {
   "name": "redux-hub",
-  "version": "0.1.0",
-  "description": "a collection of helper functions for redux",
+  "version": "0.1.0-rc3",
+  "description": "a collection of helper functions for redux operation",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib --presets es2015",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leeching/redux-combine.git"
+    "url": "git+https://github.com/leeching/redux-hub.git"
   },
   "keywords": [
     "redux"
@@ -18,9 +18,9 @@
   "author": "Ching Lee <417300981@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leeching/redux-combine/issues"
+    "url": "https://github.com/leeching/redux-hub/issues"
   },
-  "homepage": "https://github.com/leeching/redux-combine#readme",
+  "homepage": "https://github.com/leeching/redux-hub#readme",
   "dependencies": {
     "lodash": "^3.10.1"
   },
