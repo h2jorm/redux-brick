@@ -3,7 +3,7 @@ module.exports = {
   defaultState: {
     todos: []
   },
-  fromActionToReducer: {
+  mutation: {
     add: function *() {
       yield type => {
         return todo => ({

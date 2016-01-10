@@ -2,11 +2,11 @@ const forEach = require('lodash/collection/forEach');
 const camelCase = require('lodash/string/camelCase');
 const kebabCase = require('lodash/string/kebabCase');
 
-module.exports = function register(...groups) {
+module.exports = function register(...reduxSets) {
   let $actions = {};
   let $reducer = {};
-  groups.forEach(group => {
-    const {name, defaultState, fromActionToReducer} = group;
+  reduxSets.forEach(reduxSet => {
+    const {name, defaultState, mutation} = reduxSet;
 
     if (!name)
       throw new Error('should assign name');
@@ -15,7 +15,7 @@ module.exports = function register(...groups) {
 
     let stateHandlers = {};
     let actions = {};
-    forEach(fromActionToReducer, (generatorFn, actionName) => {
+    forEach(mutation, (generatorFn, actionName) => {
       const iterator = generatorFn();
       const actionLackOfType = iterator.next().value;
       const action = actionLackOfType(`${name}-${actionName}`);
