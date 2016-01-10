@@ -1,5 +1,5 @@
 const assert = require('assert');
-const {register} = require('../src');
+const {compose} = require('../src');
 const {
   createStore,
   combineReducers,
@@ -11,7 +11,7 @@ const todoApp = require('./helper/todoApp');
 describe('single set', () => {
   let store, actions, reducer;
   beforeEach(() => {
-    const actionsAndReducer = register(countApp);
+    const actionsAndReducer = compose(countApp);
     actions = actionsAndReducer.actions;
     reducer = actionsAndReducer.reducer;
     store = createStore(combineReducers(reducer));
@@ -29,7 +29,7 @@ describe('single set', () => {
 describe('states of multiple sets', () => {
   let store, actions, reducer;
   beforeEach(() => {
-    const actionsAndReducer = register(
+    const actionsAndReducer = compose(
       todoApp,
       countApp
     );

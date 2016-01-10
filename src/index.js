@@ -1,1 +1,1 @@
-exports.register = require('./register');
+exports.compose = require('./compose');
