@@ -2,11 +2,11 @@ const forEach = require('lodash/collection/forEach');
 const camelCase = require('lodash/string/camelCase');
 const kebabCase = require('lodash/string/kebabCase');
 
-module.exports = function register(...reduxSets) {
+module.exports = function (...reduxBricks) {
   let $actions = {};
   let $reducer = {};
-  reduxSets.forEach(reduxSet => {
-    const {name, defaultState, mutation} = reduxSet;
+  reduxBricks.forEach(reduxBrick => {
+    const {name, defaultState, mutation} = reduxBrick;
 
     if (!name)
       throw new Error('should assign name');
@@ -41,10 +41,6 @@ module.exports = function register(...reduxSets) {
   };
 };
 
-/**
- * @param actions
- * @param setName
- */
 function registerActions(actions, setName, $actions) {
   forEach(actions, (actionFn, actionName) => {
     const camelCasedActionName = camelCase(`${setName}-${actionName}`);
