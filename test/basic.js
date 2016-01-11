@@ -8,7 +8,7 @@ const {
 const countApp = require('./helper/countApp');
 const todoApp = require('./helper/todoApp');
 
-describe('single set', () => {
+describe('single brick', () => {
   let store, actions, reducer;
   beforeEach(() => {
     const actionsAndReducer = compose(countApp);
@@ -16,7 +16,7 @@ describe('single set', () => {
     reducer = actionsAndReducer.reducer;
     store = createStore(combineReducers(reducer));
   });
-  it('should set default value to store', () => {
+  it('should brick default value to store', () => {
     assert.equal(store.getState().countApp.count, 0);
   });
   it('should change state after dispatching an action', () => {
@@ -26,7 +26,7 @@ describe('single set', () => {
   });
 });
 
-describe('states of multiple sets', () => {
+describe('states of multiple bricks', () => {
   let store, actions, reducer;
   beforeEach(() => {
     const actionsAndReducer = compose(

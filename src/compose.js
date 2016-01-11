@@ -6,21 +6,33 @@ module.exports = function (...reduxBricks) {
   let $actions = {};
   let $reducer = {};
   reduxBricks.forEach(reduxBrick => {
-    const {name, defaultState, mutation} = reduxBrick;
+    const {name, defaultState = {}, mutation = {}} = reduxBrick;
 
     if (!name)
-      throw new Error('should assign name');
+      throw new Error('every redux brick should own its name');
     if ($reducer.hasOwnProperty(name))
-      throw new Error('state name should be unique');
+      throw new Error('redux brick name should be unique');
 
     let stateHandlers = {};
     let actions = {};
     forEach(mutation, (generatorFn, actionName) => {
-      const iterator = generatorFn();
-      const actionLackOfType = iterator.next().value;
-      const action = actionLackOfType(`${name}-${actionName}`);
-      const stateHandler = iterator.next().value;
+      let actionLackOfTypeFn, stateHandler;
+      try {
+        const iterator = generatorFn();
+        actionLackOfTypeFn = iterator.next().value;
+        stateHandler = iterator.next().value;
+      } catch (e) {
+        throw new Error(`invalid mutation ${name}-${actionName}`);
+      }
+
+      if (!actionLackOfTypeFn || !stateHandler || !isInstance(actionLackOfTypeFn, Function) || !isInstance(stateHandler, Function)) {
+        throw new Error(`${name}-${actionName} mutation should yield two functions`);
+      }
+
+      const action = actionLackOfTypeFn(`${name}-${actionName}`);
       actions[actionName] = action;
+      if (!isInstance(action, Function))
+        throw new Error(`${name}-${actionName} fails to compile the first yield value to a valid action creator function`);
       stateHandlers[actionName] = stateHandler;
     });
 
@@ -46,4 +58,8 @@ function registerActions(actions, setName, $actions) {
     const camelCasedActionName = camelCase(`${setName}-${actionName}`);
     $actions[camelCasedActionName] = actionFn;
   });
+}
+
+function isInstance(instance, prototype) {
+  return instance instanceof prototype;
 }

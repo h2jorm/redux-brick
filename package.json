@@ -1,10 +1,10 @@
 {
   "name": "redux-lego",
-  "version": "0.1.0-rc1",
+  "version": "0.1.0-rc2",
   "description": "a collection of helper functions for redux operation",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib --presets es2015",
+    "build": "rm -rf lib && babel src --out-dir lib --presets es2015",
     "test": "mocha --use_strict --harmony --harmony_destructuring --harmony_default_parameters",
     "check": "eslint src test"
   },
