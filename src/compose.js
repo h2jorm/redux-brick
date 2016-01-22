@@ -1,6 +1,6 @@
-const forEach = require('lodash/collection/forEach');
-const camelCase = require('lodash/string/camelCase');
-const kebabCase = require('lodash/string/kebabCase');
+const forEach = require('lodash/forEach');
+const camelCase = require('lodash/camelCase');
+const kebabCase = require('lodash/kebabCase');
 
 module.exports = function (...reduxBricks) {
   let $actions = {};
