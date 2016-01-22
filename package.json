@@ -1,7 +1,7 @@
 {
   "name": "redux-lego",
-  "version": "0.1.0-rc2",
-  "description": "a collection of helper functions for redux operation",
+  "version": "0.1.0",
+  "description": "building redux app in a simplified strategy",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib --presets es2015",
