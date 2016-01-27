@@ -1,1 +1,1 @@
-exports.compose = require('./compose');
+exports.genActionsAndReducers = require('./genActionsAndReducers');
