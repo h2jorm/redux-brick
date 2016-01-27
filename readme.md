@@ -59,8 +59,8 @@ Here is the benefits from decomposing the whole root redux into small bricks.
 1. Redux brick helps to save the declaration of lots of constants to make sure the unique of action type. Instead, just take care of brick name.
 2. Considering the fact that almost every action has its counterpart in reducers, action creators and reducers should be in same file for a more efficient coding. Leave no more separated actions and reducers and save two directories and a lot of files.
 
-## compose
-`compose` function from `redux-lego` helps to compose redux. It takes redux bricks as arguments and returns an object containing `actions` and `reducers`. Then it will go back the traditional redux way to apply middle wares, create store and so on.
+## genActionsAndReducers
+`genActionsAndReducers` function from `redux-lego` helps to compose redux bricks. It takes redux bricks as arguments and returns an object containing `actions` and `reducers`. Then it will go back the traditional redux way to apply middle wares, create store and so on.
 
 Here is an example using two bricks declared before.
 ```js
@@ -69,13 +69,13 @@ import {
   createStore,
   combineReducers,
 } from 'redux';
-import {compose} from 'redux-lego';
+import {genActionsAndReducers} from 'redux-lego';
 
 import countApp from './countApp';
 import todoApp from './todoApp';
 
 // compose bricks
-const {actions, reducers} = compose(
+const {actions, reducers} = genActionsAndReducers(
   countApp,
   todoApp
 );
