@@ -15,7 +15,7 @@ module.exports = {
   defaultState: {
     count: 0
   },
-  mutation: {
+  mutations: {
     add: function *() {
       yield type => {
         return () => ({type});
@@ -35,7 +35,7 @@ module.exports = {
   defaultState: {
     todos: []
   },
-  mutation: {
+  mutations: {
     add: function *() {
       yield type => {
         return todo => ({
@@ -87,7 +87,7 @@ const store = createStoreWithMiddleware(
 );
 
 // dispatch some actions
-store.dispatch(actions.countAppAdd());
+store.dispatch(actions.countApp.add());
 expect(store.getState().countApp.count).toBe(1);// true
 
 // the mutation name scope are isolated in different bricks
@@ -95,10 +95,10 @@ const newTodo = {
   title: 'hello',
   done: false
 };
-store.dispatch(actions.todoAppAdd(newTodo));
+store.dispatch(actions.todoApp.add(newTodo));
 expect(store.getState().countApp.count).toBe(1);// true
 expect(store.getState().todoApp.todos.length).toBe(1);// true
-expect(store.getState90.todoApp.todos[0]).toEqual(newTodo);// true
+expect(store.getState().todoApp.todos[0]).toEqual(newTodo);// true
 ```
 After composing bricks, `actions` and `reducers` will be generated. `redux-lego` only provides a sugar wrapper and do not break into the structure of origin redux. `actions` and `reducers` are still combined by a unique action name, but maintained automatically instead of declared in a long list of constants.
 
