@@ -1,7 +1,3 @@
-const forEach = require('lodash/forEach');
-const camelCase = require('lodash/camelCase');
-const kebabCase = require('lodash/kebabCase');
-
 module.exports = function (...reduxBricks) {
   let $actions = {};
   let $reducers = {};
@@ -15,7 +11,8 @@ module.exports = function (...reduxBricks) {
 
     let stateHandlers = {};
     let actions = {};
-    forEach(mutation, (generatorFn, actionName) => {
+    Object.keys(mutation).forEach(actionName=> {
+      const generatorFn = mutation[actionName];
       let actionLackOfTypeFn, stateHandler;
       try {
         const iterator = generatorFn();
@@ -54,9 +51,12 @@ module.exports = function (...reduxBricks) {
 };
 
 function registerActions(actions, setName, $actions) {
-  forEach(actions, (actionFn, actionName) => {
-    const camelCasedActionName = camelCase(`${setName}-${actionName}`);
-    $actions[camelCasedActionName] = actionFn;
+  const actionNames = Object.keys(actions);
+  if (!actionNames.length)
+    return;
+  const set = $actions[setName] = {};
+  actionNames.forEach(actionName => {
+    set[actionName] = actions[actionName];
   });
 }
 

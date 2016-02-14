@@ -20,7 +20,7 @@ describe('single brick', () => {
     assert.equal(store.getState().countApp.count, 0);
   });
   it('should change state after dispatching an action', () => {
-    store.dispatch(actions.countAppAdd());
+    store.dispatch(actions.countApp.add());
     const newState = store.getState();
     assert.equal(newState.countApp.count, 1);
   });
@@ -42,8 +42,8 @@ describe('states of multiple bricks', () => {
       title: 'hello',
       done: false
     };
-    store.dispatch(actions.todoAppAdd(newTodo));
-    store.dispatch(actions.countAppAdd());
+    store.dispatch(actions.todoApp.add(newTodo));
+    store.dispatch(actions.countApp.add());
     const newState = store.getState();
     assert.equal(newState.todoApp.todos.length, 1);
     assert.deepEqual(newTodo, newState.todoApp.todos[0]);
