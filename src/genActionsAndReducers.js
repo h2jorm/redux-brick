@@ -4,13 +4,13 @@ const kebabCase = require('lodash/kebabCase');
 
 module.exports = function (...reduxBricks) {
   let $actions = {};
-  let $reducer = {};
+  let $reducers = {};
   reduxBricks.forEach(reduxBrick => {
     const {name, defaultState = {}, mutation = {}} = reduxBrick;
 
     if (!name)
       throw new Error('every redux brick should own its name');
-    if ($reducer.hasOwnProperty(name))
+    if ($reducers.hasOwnProperty(name))
       throw new Error('redux brick name should be unique');
 
     let stateHandlers = {};
@@ -45,11 +45,11 @@ module.exports = function (...reduxBricks) {
     };
 
     registerActions(actions, name, $actions);
-    $reducer[name] = reducer;
+    $reducers[name] = reducer;
   });
   return {
     actions: $actions,
-    reducer: $reducer,
+    reducers: $reducers,
   };
 };
 

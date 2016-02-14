@@ -1,12 +1,12 @@
 {
   "name": "redux-lego",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "building redux app in a simplified strategy",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib --presets es2015",
     "test": "mocha --use_strict --harmony --harmony_destructuring --harmony_default_parameters",
-    "check": "eslint src test"
+    "lint": "eslint src test"
   },
   "repository": {
     "type": "git",
