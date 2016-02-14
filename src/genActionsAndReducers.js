@@ -2,7 +2,7 @@ module.exports = function (...reduxBricks) {
   let $actions = {};
   let $reducers = {};
   reduxBricks.forEach(reduxBrick => {
-    const {name, defaultState = {}, mutation = {}} = reduxBrick;
+    const {name, defaultState = {}, mutations = {}} = reduxBrick;
 
     if (!name)
       throw new Error('every redux brick should own its name');
@@ -11,8 +11,8 @@ module.exports = function (...reduxBricks) {
 
     let stateHandlers = {};
     let actions = {};
-    Object.keys(mutation).forEach(actionName=> {
-      const generatorFn = mutation[actionName];
+    Object.keys(mutations).forEach(actionName=> {
+      const generatorFn = mutations[actionName];
       let actionLackOfTypeFn, stateHandler;
       try {
         const iterator = generatorFn();

@@ -39,7 +39,7 @@ describe('invalid mutation', () => {
     const composeDemo1 = function () {
       const demo = {
         name: 'demo',
-        mutation: {
+        mutations: {
           add: {}
         }
       };
@@ -48,7 +48,7 @@ describe('invalid mutation', () => {
     const composeDemo2 = function () {
       const demo2 = {
         name: 'demo2',
-        mutation: {
+        mutations: {
           add2: function () {}
         }
       };
@@ -61,7 +61,7 @@ describe('invalid mutation', () => {
     const composeDemo1 = function () {
       const demo = {
         name: 'demo',
-        mutation: {
+        mutations: {
           add: function *() {
             yield ({});
           }
@@ -72,7 +72,7 @@ describe('invalid mutation', () => {
     const composeDemo2 = function () {
       const demo = {
         name: 'demo2',
-        mutation: {
+        mutations: {
           add2: function *() {
             yield () => {};
             yield ({});
@@ -88,7 +88,7 @@ describe('invalid mutation', () => {
     const composeDemo = function () {
       const demo = {
         name: 'demo',
-        mutation: {
+        mutations: {
           add: function *() {
             yield () => ({});
             yield () => ({});
