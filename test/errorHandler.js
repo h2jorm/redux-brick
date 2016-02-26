@@ -1,22 +1,22 @@
 const assert = require('assert');
-const {genActionsAndReducers} = require('../src');
+const {build} = require('../src');
 const {
   createStore,
   combineReducers,
 } = require('redux');
 
 describe('empty mutation & invalid name', () => {
-  it('should leave actions empty in undefined mutation case', () => {
+  it('should leave actionCreators empty in undefined mutation case', () => {
     const brickWithoutMutation = {
       name: 'demo'
     };
-    const {actions} = genActionsAndReducers(brickWithoutMutation);
-    assert.deepEqual(actions, {});
+    const {actionCreators} = build(brickWithoutMutation);
+    assert.deepEqual(actionCreators, {});
   });
   it('should throw when composing an unnamed brick', () => {
     const unnamedBrick = {};
     const composeUnnamedBrick = function () {
-      genActionsAndReducers(unnamedBrick);
+      build(unnamedBrick);
     };
     assert.throws(composeUnnamedBrick, /every redux brick should own its name/);
   });
@@ -28,7 +28,7 @@ describe('empty mutation & invalid name', () => {
       name: 'demo',
     };
     const composeDemos = function () {
-      genActionsAndReducers(demoBrick01, demoBrick02);
+      build(demoBrick01, demoBrick02);
     };
     assert.throws(composeDemos, /redux brick name should be unique/);
   });
@@ -43,7 +43,7 @@ describe('invalid mutation', () => {
           add: {}
         }
       };
-      genActionsAndReducers(demo);
+      build(demo);
     };
     const composeDemo2 = function () {
       const demo2 = {
@@ -52,7 +52,7 @@ describe('invalid mutation', () => {
           add2: function () {}
         }
       };
-      genActionsAndReducers(demo2);
+      build(demo2);
     };
     assert.throws(composeDemo1, /invalid mutation demo-add/);
     assert.throws(composeDemo2, /invalid mutation demo2-add2/);
@@ -67,7 +67,7 @@ describe('invalid mutation', () => {
           }
         }
       };
-      genActionsAndReducers(demo);
+      build(demo);
     };
     const composeDemo2 = function () {
       const demo = {
@@ -79,7 +79,7 @@ describe('invalid mutation', () => {
           }
         }
       };
-      genActionsAndReducers(demo);
+      build(demo);
     };
     assert.throws(composeDemo1, /demo-add mutation should yield two functions/);
     assert.throws(composeDemo2, /demo2-add2 mutation should yield two functions/);
@@ -95,7 +95,7 @@ describe('invalid mutation', () => {
           }
         }
       };
-      genActionsAndReducers(demo);
+      build(demo);
     };
     assert.throws(composeDemo, /demo-add fails to compile the first yield value to a valid action creator function/);
   });

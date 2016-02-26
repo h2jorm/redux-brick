@@ -1,1 +1,1 @@
-exports.genActionsAndReducers = require('./genActionsAndReducers');
+exports.build = require('./build');
