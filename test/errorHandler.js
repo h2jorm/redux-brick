@@ -6,12 +6,12 @@ const {
 } = require('redux');
 
 describe('empty mutation & invalid name', () => {
-  it('should leave actions empty in undefined mutation case', () => {
+  it('should leave actionCreators empty in undefined mutation case', () => {
     const brickWithoutMutation = {
       name: 'demo'
     };
-    const {actions} = genActionsAndReducers(brickWithoutMutation);
-    assert.deepEqual(actions, {});
+    const {actionCreators} = genActionsAndReducers(brickWithoutMutation);
+    assert.deepEqual(actionCreators, {});
   });
   it('should throw when composing an unnamed brick', () => {
     const unnamedBrick = {};

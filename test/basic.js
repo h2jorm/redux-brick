@@ -9,10 +9,10 @@ const countApp = require('./helper/countApp');
 const todoApp = require('./helper/todoApp');
 
 describe('single brick', () => {
-  let store, actions, reducers;
+  let store, actionCreators, reducers;
   beforeEach(() => {
     const actionsAndReducer = genActionsAndReducers(countApp);
-    actions = actionsAndReducer.actions;
+    actionCreators = actionsAndReducer.actionCreators;
     reducers = actionsAndReducer.reducers;
     store = createStore(combineReducers(reducers));
   });
@@ -20,20 +20,20 @@ describe('single brick', () => {
     assert.equal(store.getState().countApp.count, 0);
   });
   it('should change state after dispatching an action', () => {
-    store.dispatch(actions.countApp.add());
+    store.dispatch(actionCreators.countApp.add());
     const newState = store.getState();
     assert.equal(newState.countApp.count, 1);
   });
 });
 
 describe('states of multiple bricks', () => {
-  let store, actions, reducers;
+  let store, actionCreators, reducers;
   beforeEach(() => {
     const actionsAndReducer = genActionsAndReducers(
       todoApp,
       countApp
     );
-    actions = actionsAndReducer.actions;
+    actionCreators = actionsAndReducer.actionCreators;
     reducers = actionsAndReducer.reducers;
     store = createStore(combineReducers(reducers));
   });
@@ -42,8 +42,8 @@ describe('states of multiple bricks', () => {
       title: 'hello',
       done: false
     };
-    store.dispatch(actions.todoApp.add(newTodo));
-    store.dispatch(actions.countApp.add());
+    store.dispatch(actionCreators.todoApp.add(newTodo));
+    store.dispatch(actionCreators.countApp.add());
     const newState = store.getState();
     assert.equal(newState.todoApp.todos.length, 1);
     assert.deepEqual(newTodo, newState.todoApp.todos[0]);
