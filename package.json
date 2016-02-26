@@ -1,6 +1,6 @@
 {
-  "name": "redux-lego",
-  "version": "0.3.0",
+  "name": "redux-brick",
+  "version": "0.1.0",
   "description": "building redux app in a simplified strategy",
   "main": "lib/index.js",
   "scripts": {
@@ -10,17 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leeching/redux-lego.git"
+    "url": "git+https://github.com/leeching/redux-brick.git"
   },
   "keywords": [
     "redux"
   ],
-  "author": "Ching Lee <417300981@qq.com>",
+  "author": "leeching <417300981@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leeching/redux-lego/issues"
+    "url": "https://github.com/leeching/redux-brick/issues"
   },
-  "homepage": "https://github.com/leeching/redux-lego#readme",
+  "homepage": "https://github.com/leeching/redux-brick#readme",
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-preset-es2015": "^6.5.0",
