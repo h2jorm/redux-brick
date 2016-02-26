@@ -1,5 +1,5 @@
 const assert = require('assert');
-const {genActionsAndReducers} = require('../src');
+const {build} = require('../src');
 const {
   createStore,
   combineReducers,
@@ -11,7 +11,7 @@ const todoApp = require('./helper/todoApp');
 describe('single brick', () => {
   let store, actionCreators, reducers;
   beforeEach(() => {
-    const actionsAndReducer = genActionsAndReducers(countApp);
+    const actionsAndReducer = build(countApp);
     actionCreators = actionsAndReducer.actionCreators;
     reducers = actionsAndReducer.reducers;
     store = createStore(combineReducers(reducers));
@@ -29,7 +29,7 @@ describe('single brick', () => {
 describe('states of multiple bricks', () => {
   let store, actionCreators, reducers;
   beforeEach(() => {
-    const actionsAndReducer = genActionsAndReducers(
+    const actionsAndReducer = build(
       todoApp,
       countApp
     );
